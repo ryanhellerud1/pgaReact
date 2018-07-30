@@ -91,12 +91,13 @@ class LeaderBoard extends Component {
     if (inputName === "score") {
       if (!score || score < 0 || score > 100 || isNaN(score)) {
         validFields[inputName] = false;
-        errorMessage = "score must be a number between 0-100";
+        errorMessage =  !score ? "score must not be blank" :
+          "score must be a number between 0-100";
       } else {
         validFields[inputName] = true;
       }
     } else if (inputName === "firstName" || inputName === "lastName") {
-      if (/\d/.test(nameCheck) || !nameCheck) {
+      if (!/^[a-zA-Z]+$/.test(nameCheck) || !nameCheck) {
         validFields[inputName] = false;
         errorMessage = !nameCheck
           ? `${updatedName} must not be blank`
